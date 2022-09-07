@@ -1,0 +1,32 @@
+---
+- hosts: db
+  gather_facts: true
+  tasks:
+    - name: install apace if not installed
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
+    
+    - name: install apache2 if not installed
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+        # - name: start the apache service
+        #ansible.builtin.service:
+        #name: httpd
+        #state: started
+
+        #- name: changing the port number of apache
+        #ansible.builtin.template:
+        #src: /etc/ansible/playbook/httpd.conf.j2
+        #dest: /etc/httpd/conf/httpd.conf
+
+        #- name: restarting the apache service
+        #ansible.builtin.service:
+        #name: httpd
+        #state: restarte
+

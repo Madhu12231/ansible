@@ -1,0 +1,11 @@
+---
+- hosts: web
+  tasks:
+    - name: install multiple apps
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - git
+        - tree
+        - java

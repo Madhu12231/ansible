@@ -1,0 +1,11 @@
+---
+- hosts: web
+  gather_facts: false
+  tasks:
+    - name: create a directory
+      ansible.builtin.file: path=/opt/dir@123 state=absent
+
+    - name: create a file
+      ansible.builtin.file:
+        path: /opt/madhu.txt 
+        state: absent
